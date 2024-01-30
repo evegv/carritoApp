@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Los productos selccionados son:</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Los productos selccionados son:</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-grid>
+    <ion-row>
+      <ion-col>#</ion-col>
+      <ion-col>Descripción</ion-col>
+      <ion-col>Precio</ion-col>
+      <ion-col>Cantidad</ion-col>
+      <ion-col>SubTotal</ion-col>
+      <ion-col>Accion</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let item of listaItemsCarrito ; let i=index">
+      <ion-col>{{ item.idProducto}}</ion-col>
+      <ion-col>{{ item.descripcion}}</ion-col>
+      <ion-col>s/.{{ item.precio}}</ion-col>
+      <ion-col>{{ item.cantidad}}</ion-col>
+      <ion-col>{{ item.cantidad! * item.precio! }}</ion-col>
+      <ion-button color="danger" (click)="eliminarProductoCarrito(i)"><ion-icon name="trash"></ion-icon></ion-button>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>Totales</ion-col>
+      <ion-col>S/.{{total}}</ion-col>
+    </ion-row>
+  </ion-grid>
+   <ion-button color="warning" (click)="VaciarCarrito()">Limpiar</ion-button>
+   <ion-button (click)="back()">Regresar</ion-button>
+   <ion-button (click)="confirmarCompra()">Registrar</ion-button>
+</ion-content>
